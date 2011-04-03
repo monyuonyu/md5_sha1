@@ -92,7 +92,8 @@ Arguments (may be any combination):
   filename - digests file
   (none)   - digests standard input
  */
-int main(int argc, char *argv[])
+int main(argc, argv)
+	int argc;char *argv[];
 {
 	int cnt;
 
@@ -107,7 +108,8 @@ int main(int argc, char *argv[])
 
 /* 文字列を要約し結果を出力する
  */
-static void MDString(char *string)
+static void MDString(string)
+	char *string;
 {
 	MD_CTX context;
 	unsigned char digest[16];
@@ -221,7 +223,8 @@ static void MDString(char *string)
 /* 16進法でメッセージ要約を出力する
  Prints a message digest in hexadecimal.
  */
-static void MDPrint(unsigned char digest[16])
+static void MDPrint(digest)
+	unsigned char digest[16];
 {
 
 	unsigned int cnt;
