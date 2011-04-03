@@ -95,7 +95,9 @@ int main(argc, argv)
 
 	if (argc > 1)
 		for (cnt = 1; cnt < argc; cnt++)
+		{
 			MDString(argv[cnt]);
+		}
 
 	return (0);
 }
