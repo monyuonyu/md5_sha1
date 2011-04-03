@@ -58,10 +58,6 @@ RSAデータセキュリティ社はこのソフトの商品性もしくはこのソフトの特定目
 #define TEST_BLOCK_COUNT 1000
 
 static void MDString PROTO_LIST ((char *));
-//static void MDTimeTrial PROTO_LIST ((void));
-//static void MDTestSuite PROTO_LIST ((void));
-//static void MDFile PROTO_LIST ((char *));
-//static void MDFilter PROTO_LIST ((void));
 static void MDPrint PROTO_LIST ((unsigned char [16]));
 
 #if MD == 2
@@ -99,18 +95,7 @@ int main(argc, argv)
 
 	if (argc > 1)
 		for (i = 1; i < argc; i++)
-//			if (argv[i][0] == '-' && argv[i][1] == 's')
-				MDString(argv[i]);
-//			else if (strcmp(argv[i], "-t") == 0)
-//				MDTimeTrial();
-//			else if (strcmp(argv[i], "-x") == 0)
-//				MDTestSuite();
-//			else
-//				MDFile(argv[i]);
-//	else
-//		MDFilter();
-
-//	printf("%d\n", argc);
+			MDString(argv[i]);
 
 	return (0);
 }
@@ -133,101 +118,6 @@ static void MDString(string)
 	printf("\n");
 }
 
-/* TEST_BLOCK_COUNTのTEST_BLOCK_LENバイトブロックを要約する時間を計る
- */
-//static void MDTimeTrial()
-//{
-//	MD_CTX context;
-//	time_t endTime, startTime;
-//	unsigned char block[TEST_BLOCK_LEN], digest[16];
-//	unsigned int i;
-//
-//	printf("MD%d time trial. Digesting %d %d-byte blocks ...", MD,
-//			TEST_BLOCK_LEN, TEST_BLOCK_COUNT);
-//
-//	/* Initialize block */
-//	for (i = 0; i < TEST_BLOCK_LEN; i++)
-//		block[i] = (unsigned char) (i & 0xff);
-//
-//	/* Start timer */
-//	time(&startTime);
-//
-//	/* Digest blocks */
-//	MDInit(&context);
-//	for (i = 0; i < TEST_BLOCK_COUNT; i++)
-//		MDUpdate(&context, block, TEST_BLOCK_LEN);
-//	MDFinal(digest, &context);
-//
-//	/* Stop timer */
-//	time(&endTime);
-//
-//	printf(" done\n");
-//	printf("Digest = ");
-//	MDPrint(digest);
-//	printf("\nTime = %ld seconds\n", (long) (endTime - startTime));
-//	printf("Speed = %ld bytes/second\n", (long) TEST_BLOCK_LEN
-//			* (long) TEST_BLOCK_COUNT / (endTime - startTime));
-//}
-
-/* 参考となる文字列の組を要約し結果を出力する
- */
-//static void MDTestSuite()
-//{
-//	printf("MD%d test suite:\n", MD);
-//
-//	MDString("");
-//	MDString("a");
-//	MDString("abc");
-//	MDString("message digest");
-//	MDString("abcdefghijklmnopqrstuvwxyz");
-//	MDString("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789");
-//	MDString("12345678901234567890123456789012345678901234567890123456789012345678901234567890");
-//}
-
-/* ファイルを要約し結果を出力する
- */
-//static void MDFile(filename)
-//	char *filename;
-//{
-//	FILE *file;
-//	MD_CTX context;
-//	int len;
-//	unsigned char buffer[1024], digest[16];
-//
-//	if ((file = fopen(filename, "rb")) == NULL)
-//		printf("%s can't be opened\n", filename);
-//
-//	else
-//	{
-//		MDInit(&context);
-//		while (len = fread(buffer, 1, 1024, file))
-//			MDUpdate(&context, buffer, len);
-//		MDFinal(digest, &context);
-//
-//		fclose(file);
-//
-//		printf("MD%d (%s) = ", MD, filename);
-//		MDPrint(digest);
-//		printf("\n");
-//	}
-//}
-
-/* 標準入力を要約し結果を出力する
- */
-//static void MDFilter()
-//{
-//	MD_CTX context;
-//	int len;
-//	unsigned char buffer[16], digest[16];
-//
-//	MDInit(&context);
-//	while (len = fread(buffer, 1, 16, stdin))
-//		MDUpdate(&context, buffer, len);
-//	MDFinal(digest, &context);
-//
-//	MDPrint(digest);
-//	printf("\n");
-//}
 
 /* 16進法でメッセージ要約を出力する
  Prints a message digest in hexadecimal.
