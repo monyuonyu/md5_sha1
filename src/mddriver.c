@@ -91,11 +91,11 @@ Arguments (may be any combination):
 int main(argc, argv)
 	int argc;char *argv[];
 {
-	int i;
+	int cnt;
 
 	if (argc > 1)
-		for (i = 1; i < argc; i++)
-			MDString(argv[i]);
+		for (cnt = 1; cnt < argc; cnt++)
+			MDString(argv[cnt]);
 
 	return (0);
 }
@@ -126,8 +126,8 @@ static void MDPrint(digest)
 	unsigned char digest[16];
 {
 
-	unsigned int i;
+	unsigned int cnt;
 
-	for (i = 0; i < 16; i++)
-		printf("%02x", digest[i]);
+	for (cnt = 0; cnt < 16; cnt++)
+		printf("%02x", digest[cnt]);
 }
