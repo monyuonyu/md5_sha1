@@ -1,11 +1,11 @@
-/*
+﻿/*
  * mddriver.c
  *
  *  Created on: 2011/04/01
  *      Author: mizu
  */
 
-/* MDDRIVER.C - MD2,MD4,MD5�p�̃e�X�g�h���C�o�[
+/* MDDRIVER.C - MD2,MD4,MD5用のテストドライバー
  */
 
 /* Copyright (C) 1990-2, RSA Data Security, Inc. Created 1990. All
@@ -19,19 +19,19 @@ without express or implied warranty of any kind.
 These notices must be retained in any copies of any part of this
 documentation and/or software.
 
-[��Ғ�:�ȉ��͏�̕��͂����ɖ󂵂����̂ł��萳���Ȍ��͂����̂͏�̉p��
-�̕��͂ł��B]
+[訳者注:以下は上の文章を仮に訳したものであり正式な効力を持つのは上の英語
+の文章です。]
 
-RSA�f�[�^�Z�L�����e�B�Ђ͂��̃\�t�g�̏��i���������͂��̃\�t�g�̓����
-�I�ւ̓K�����Ɋւ��邢���Ȃ�\�����s��Ȃ��B����͖����E�Öق��킸��
-���Ȃ�ۏ؂��Ȃ��u���̂܂܁v�̏�ԂŔz�z�����B
+RSAデータセキュリティ社はこのソフトの商品性もしくはこのソフトの特定目
+的への適合性に関するいかなる表明も行わない。これは明示・暗黙を問わずい
+かなる保証もない「そのまま」の状態で配布される。
 
-���̕��������(��������)�\�t�g�̂����Ȃ镔���̕������ɂ������̒��ӏ�
-����������Ă��Ȃ���΂Ȃ�Ȃ��B
+この文書および(もしくは)ソフトのいかなる部分の複製物にもこれらの注意書
+きが書かれていなければならない。
  */
 
-/* C�R���p�C���t���O�ɂ���Ē�`����Ă��Ȃ��ꍇ�͉��L�ɂ��MD�̏����l
-  ��MD5�ɂ����B
+/* Cコンパイラフラグによって定義されていない場合は下記によりMDの初期値
+  はMD5にされる。
  */
 #ifndef MD
 #define MD 5
@@ -52,7 +52,7 @@ RSA�f�[�^�Z�L�����e�B�Ђ͂��̃\�t�g�̏��i���������͂��̃\�t�g�̓����
 #include "md5.h"
 #endif
 
-/* �e�X�g�u���b�N�̒����A�e�X�g�u���b�N�̐�
+/* テストブロックの長さ、テストブロックの数
  */
 #define TEST_BLOCK_LEN 1000
 #define TEST_BLOCK_COUNT 1000
@@ -79,7 +79,7 @@ static void MDPrint PROTO_LIST ((unsigned char [16]));
 #define MDFinal MD5Final
 #endif
 
-/* ���C���h���C�o�[
+/* メインドライバー
 
 Arguments (may be any combination):
   -sstring - digests string
@@ -101,7 +101,7 @@ int main(int argc, char *argv[])
 	return (0);
 }
 
-/* �������v�񂵌��ʂ��o�͂���
+/* 文字列を要約し結果を出力する
  */
 static void MDString(char *string)
 {
@@ -119,7 +119,7 @@ static void MDString(char *string)
 }
 
 
-/* 16�i�@�Ń��b�Z�[�W�v����o�͂���
+/* 16進法でメッセージ要約を出力する
  Prints a message digest in hexadecimal.
  */
 static void MDPrint(unsigned char digest[16])

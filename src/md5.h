@@ -1,4 +1,4 @@
-/*
+﻿/*
  * md5.h
  *
  *  Created on: 2011/04/01
@@ -11,7 +11,7 @@
 #include "global.h"
 
 
-/* MD5.H - MD5C.C�p�w�b�_�t�@�C��
+/* MD5.H - MD5C.C用ヘッダファイル
  */
 
 /* Copyright (C) 1991-2, RSA Data Security, Inc. Created 1991. All
@@ -35,32 +35,32 @@ without express or implied warranty of any kind.
 These notices must be retained in any copies of any part of this
 documentation and/or software.
 
-[��Ғ�:�ȉ��͏�̕��͂����ɖ󂵂����̂ł��萳���Ȍ��͂����̂͏�̉p��
-�̕��͂ł��B]
+[訳者注:以下は上の文章を仮に訳したものであり正式な効力を持つのは上の英語
+の文章です。]
 
-���̃\�t�g�܂��͊֐��ɂ��ďq�ׂ�������͎Q�l�����Ƃ��ĕt����S�Ă̎�
-���ɂ����Ă��ꂪ�uRSA�f�[�^�Z�L�����e�B�� MD5���b�Z�[�W�v��A���S���Y
-���v�Ɩ��炩�ɂ���Ă���ꍇ�Ɍ���A���̃\�t�g�𕡐��E�g�p���郉�C�Z��
-�X����������B
+このソフトまたは関数について述べるもしくは参考資料として付ける全ての資
+料においてそれが「RSAデータセキュリティ社 MD5メッセージ要約アルゴリズ
+ム」と明らかにされている場合に限り、このソフトを複製・使用するライセン
+スを許諾する。
 
-�񎟒��앨�ɂ��ďq�ׂ�������͎Q�l�����Ƃ��ĕt����S�Ă̎����ɂ�����
-���̒��앨���uRSA�f�[�^�Z�L�����e�B�� MD5���b�Z�[�W�v��A���S���Y����
-�R�����Ă���v�Ɩ��炩�ɂ���Ă���ꍇ�Ɍ���A�񎟒��앨�̍쐬�E�g�p��
-�郉�C�Z���X����������B
+二次著作物について述べるもしくは参考資料として付ける全ての資料において
+その著作物が「RSAデータセキュリティ社 MD5メッセージ要約アルゴリズムに
+由来している」と明らかにされている場合に限り、二次著作物の作成・使用す
+るライセンスを許諾する。
 
-RSA�f�[�^�Z�L�����e�B�Ђ͂��̃\�t�g�̏��i���������͂��̃\�t�g�̓����
-�I�ւ̓K�����Ɋւ��邢���Ȃ�\�����s��Ȃ��B����͖����E�Öق��킸��
-���Ȃ�ۏ؂��Ȃ��u���̂܂܁v�̏�ԂŔz�z�����B
+RSAデータセキュリティ社はこのソフトの商品性もしくはこのソフトの特定目
+的への適合性に関するいかなる表明も行わない。これは明示・暗黙を問わずい
+かなる保証もない「そのまま」の状態で配布される。
 
-���̕��������(��������)�\�t�g�̂����Ȃ镔���̕������ɂ������̒��ӏ�
-����������Ă��Ȃ���΂Ȃ�Ȃ��B
+この文書および(もしくは)ソフトのいかなる部分の複製物にもこれらの注意書
+きが書かれていなければならない。
  */
 
-/* MD5�R���e�L�X�g */
+/* MD5コンテキスト */
 typedef struct {
-  UINT4 state[4];                                     /* ���(ABCD) */
-  UINT4 count[2];         /* 2^64��@�Ƃ����r�b�g��(���ʃr�b�g����) */
-  unsigned char buffer[64];                 /* ���̓f�[�^�̃o�b�t�@ */
+  UINT4 state[4];                                     /* 状態(ABCD) */
+  UINT4 count[2];         /* 2^64を法としたビット数(下位ビットが先) */
+  unsigned char buffer[64];                 /* 入力データのバッファ */
 } MD5_CTX;
 
 void MD5Init PROTO_LIST ((MD5_CTX *));

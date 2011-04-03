@@ -1,11 +1,11 @@
-/*
+﻿/*
  * md5.c
  *
  *  Created on: 2011/04/01
  *      Author: mizu
  */
 
-/* MD5C.C - RSA�f�[�^�Z�L�����e�B�ЁAMD5���b�Z�[�W�v��A���S���Y��
+/* MD5C.C - RSAデータセキュリティ社、MD5メッセージ要約アルゴリズム
  */
 
 /* Copyright (C) 1991-2, RSA Data Security, Inc. Created 1991. All
@@ -29,31 +29,31 @@ without express or implied warranty of any kind.
 These notices must be retained in any copies of any part of this
 documentation and/or software.
 
-[��Ғ�:�ȉ��͏�̕��͂����ɖ󂵂����̂ł��萳���Ȍ��͂����̂͏�̉p��
-�̕��͂ł��B]
+[訳者注:以下は上の文章を仮に訳したものであり正式な効力を持つのは上の英語
+の文章です。]
 
-���̃\�t�g�܂��͊֐��ɂ��ďq�ׂ�������͎Q�l�����Ƃ��ĕt����S�Ă̎�
-���ɂ����Ă��ꂪ�uRSA�f�[�^�Z�L�����e�B�� MD5���b�Z�[�W�v��A���S���Y
-���v�Ɩ��炩�ɂ���Ă���ꍇ�Ɍ���A���̃\�t�g�𕡐��E�g�p���郉�C�Z��
-�X����������B
+このソフトまたは関数について述べるもしくは参考資料として付ける全ての資
+料においてそれが「RSAデータセキュリティ社 MD5メッセージ要約アルゴリズ
+ム」と明らかにされている場合に限り、このソフトを複製・使用するライセン
+スを許諾する。
 
-�񎟒��앨�ɂ��ďq�ׂ�������͎Q�l�����Ƃ��ĕt����S�Ă̎����ɂ�����
-���̒��앨���uRSA�f�[�^�Z�L�����e�B�� MD5���b�Z�[�W�v��A���S���Y����
-�R�����Ă���v�Ɩ��炩�ɂ���Ă���ꍇ�Ɍ���A�񎟒��앨�̍쐬�E�g�p��
-�郉�C�Z���X����������B
+二次著作物について述べるもしくは参考資料として付ける全ての資料において
+その著作物が「RSAデータセキュリティ社 MD5メッセージ要約アルゴリズムに
+由来している」と明らかにされている場合に限り、二次著作物の作成・使用す
+るライセンスを許諾する。
 
-RSA�f�[�^�Z�L�����e�B�Ђ͂��̃\�t�g�̏��i���������͂��̃\�t�g�̓����
-�I�ւ̓K�����Ɋւ��邢���Ȃ�\�����s��Ȃ��B����͖����E�Öق��킸��
-���Ȃ�ۏ؂��Ȃ��u���̂܂܁v�̏�ԂŔz�z�����B
+RSAデータセキュリティ社はこのソフトの商品性もしくはこのソフトの特定目
+的への適合性に関するいかなる表明も行わない。これは明示・暗黙を問わずい
+かなる保証もない「そのまま」の状態で配布される。
 
-���̕��������(��������)�\�t�g�̂����Ȃ镔���̕������ɂ������̒��ӏ�
-����������Ă��Ȃ���΂Ȃ�Ȃ��B
+この文書および(もしくは)ソフトのいかなる部分の複製物にもこれらの注意書
+きが書かれていなければならない。
  */
 
 #include "global.h"
 #include "md5.h"
 
-/* MD5Transform���[�`���p�萔
+/* MD5Transformルーチン用定数
  */
 
 #define S11 7
@@ -87,19 +87,19 @@ static unsigned char PADDING[64] = {
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 };
 
-/* F,G,H,I��MD5�̊�{�֐��ł���
+/* F,G,H,IはMD5の基本関数である
  */
 #define F(x, y, z) (((x) & (y)) | ((~x) & (z)))
 #define G(x, y, z) (((x) & (z)) | ((y) & (~z)))
 #define H(x, y, z) ((x) ^ (y) ^ (z))
 #define I(x, y, z) ((y) ^ ((x) | (~z)))
 
-/* ROTATE_LEFT��x������n�r�b�g�z������
+/* ROTATE_LEFTはxを左にnビット循環させる
  */
 #define ROTATE_LEFT(x, n) (((x) << (n)) | ((x) >> (32-(n))))
 
-/* FF,GG,HH,II�̓��E���h1,2,3,4�p�̕ϊ��֐��ł���
-�z�͍Čv�Z������邽�߉��Z�ƕ�������Ă���
+/* FF,GG,HH,IIはラウンド1,2,3,4用の変換関数である
+循環は再計算を避けるため加算と分離されている
  */
 #define FF(a, b, c, d, x, s, ac) { \
  (a) += F ((b), (c), (d)) + (x) + (UINT4)(ac); \
@@ -122,13 +122,13 @@ static unsigned char PADDING[64] = {
  (a) += (b); \
   }
 
-/* MD5�̏������@�V�����R���e�L�X�g����������MD5�̍�Ƃ��n�߂�
+/* MD5の初期化　新しいコンテキストを書き込みMD5の作業を始める
  */
 void MD5Init (context)
-MD5_CTX *context;                                   /* �R���e�L�X�g */
+MD5_CTX *context;                                   /* コンテキスト */
 {
   context->count[0] = context->count[1] = 0;
-  /* �ٗl�Ȗ��͂��������萔����������
+  /* 異様な魅力を持つ初期定数を書き込む
 */
   context->state[0] = 0x67452301;
   context->state[1] = 0xefcdab89;
@@ -136,21 +136,21 @@ MD5_CTX *context;                                   /* �R���e�L�X�g */
   context->state[3] = 0x10325476;
 }
 
-/* MD5�u���b�N�͍�Ƃ��ŐV�̂��̂ɂ���@�ʂ̃��b�Z�[�W�u���b�N��������
-  �R���e�L�X�g���ŐV�̂��̂ɂ��Ȃ���MD5���b�Z�[�W�v��A���S���Y���̍�
-  �Ƃ𑱂���
+/* MD5ブロックは作業を最新のものにする　別のメッセージブロックを処理し
+  コンテキストを最新のものにしながらMD5メッセージ要約アルゴリズムの作
+  業を続ける
  */
 void MD5Update (context, input, inputLen)
-MD5_CTX *context;                                   /* �R���e�L�X�g */
-unsigned char *input;                                 /* ���̓f�[�^ */
-unsigned int inputLen;                          /* ���̓f�[�^�̒��� */
+MD5_CTX *context;                                   /* コンテキスト */
+unsigned char *input;                                 /* 入力データ */
+unsigned int inputLen;                          /* 入力データの長さ */
 {
   unsigned int i, index, partLen;
 
-  /* 64��@�Ƃ����o�C�g�����v�Z���� */
+  /* 64を法としたバイト数を計算する */
   index = (unsigned int)((context->count[0] >> 3) & 0x3F);
 
-  /* �r�b�g�����ŐV�̂��̂ɂ��� */
+  /* ビット数を最新のものにする */
   if ((context->count[0] += ((UINT4)inputLen << 3))
 
    < ((UINT4)inputLen << 3))
@@ -159,7 +159,7 @@ unsigned int inputLen;                          /* ���̓f�[�^�̒��� */
 
   partLen = 64 - index;
 
-  /* �\�Ȍ��葽���̉񐔁A�ϊ�����
+  /* 可能な限り多くの回数、変換する
 */
   if (inputLen >= partLen) {
  MD5_memcpy
@@ -174,43 +174,43 @@ unsigned int inputLen;                          /* ���̓f�[�^�̒��� */
   else
  i = 0;
 
-  /* ���̓f�[�^��ۂ����o�b�t�@ */
+  /* 入力データを保ったバッファ */
   MD5_memcpy
  ((POINTER)&context->buffer[index], (POINTER)&input[i],
   inputLen-i);
 }
 
-/* MD5�̎d�グ�@���b�Z�[�W�v��������R���e�L�X�g���[���ɂ���MD5���b�Z
-  �[�W�v��̍�Ƃ��I����
+/* MD5の仕上げ　メッセージ要約を書きコンテキストをゼロにしてMD5メッセ
+  ージ要約の作業を終える
  */
 void MD5Final (digest, context)
-unsigned char digest[16];                         /* ���b�Z�[�W�v�� */
-MD5_CTX *context;                                   /* �R���e�L�X�g */
+unsigned char digest[16];                         /* メッセージ要約 */
+MD5_CTX *context;                                   /* コンテキスト */
 {
   unsigned char bits[8];
   unsigned int index, padLen;
 
-  /* �r�b�g����ۑ����� */
+  /* ビット数を保存する */
   Encode (bits, context->count, 8);
 
-  /* 64��@�Ƃ���56�ɂȂ�悤�ɖ��߂�
+  /* 64を法として56になるように埋める
 */
   index = (unsigned int)((context->count[0] >> 3) & 0x3f);
   padLen = (index < 56) ? (56 - index) : (120 - index);
   MD5Update (context, PADDING, padLen);
 
-  /* (���ߍ��킹�O��)������t�������� */
+  /* (埋め合わせ前の)長さを付け加える */
   MD5Update (context, bits, 8);
 
-  /* �v��̏�Ԃ�ۑ����� */
+  /* 要約の状態を保存する */
   Encode (digest, context->state, 16);
 
-  /* �f���P�[�g�ȏ��̂Ƃ�����[���ɂ���
+  /* デリケートな情報のところをゼロにする
 */
   MD5_memset ((POINTER)context, 0, sizeof (*context));
 }
 
-/* MD5��{�ϊ��@�u���b�N�Ɋ�Â���state��ϊ�����B
+/* MD5基本変換　ブロックに基づいてstateを変換する。
  */
 static void MD5Transform (state, block)
 UINT4 state[4];
@@ -220,7 +220,7 @@ unsigned char block[64];
 
   Decode (x, block, 64);
 
-  /* ���E���h1 */
+  /* ラウンド1 */
   FF (a, b, c, d, x[ 0], S11, 0xd76aa478); /* 1 */
   FF (d, a, b, c, x[ 1], S12, 0xe8c7b756); /* 2 */
   FF (c, d, a, b, x[ 2], S13, 0x242070db); /* 3 */
@@ -238,7 +238,7 @@ unsigned char block[64];
   FF (c, d, a, b, x[14], S13, 0xa679438e); /* 15 */
   FF (b, c, d, a, x[15], S14, 0x49b40821); /* 16 */
 
- /*���E���h2 */
+ /*ラウンド2 */
   GG (a, b, c, d, x[ 1], S21, 0xf61e2562); /* 17 */
   GG (d, a, b, c, x[ 6], S22, 0xc040b340); /* 18 */
   GG (c, d, a, b, x[11], S23, 0x265e5a51); /* 19 */
@@ -257,7 +257,7 @@ unsigned char block[64];
   GG (c, d, a, b, x[ 7], S23, 0x676f02d9); /* 31 */
   GG (b, c, d, a, x[12], S24, 0x8d2a4c8a); /* 32 */
 
-  /* ���E���h3 */
+  /* ラウンド3 */
   HH (a, b, c, d, x[ 5], S31, 0xfffa3942); /* 33 */
   HH (d, a, b, c, x[ 8], S32, 0x8771f681); /* 34 */
   HH (c, d, a, b, x[11], S33, 0x6d9d6122); /* 35 */
@@ -275,7 +275,7 @@ unsigned char block[64];
   HH (c, d, a, b, x[15], S33, 0x1fa27cf8); /* 47 */
   HH (b, c, d, a, x[ 2], S34, 0xc4ac5665); /* 48 */
 
-  /* ���E���h4 */
+  /* ラウンド4 */
   II (a, b, c, d, x[ 0], S41, 0xf4292244); /* 49 */
   II (d, a, b, c, x[ 7], S42, 0x432aff97); /* 50 */
   II (c, d, a, b, x[14], S43, 0xab9423a7); /* 51 */
@@ -298,14 +298,14 @@ unsigned char block[64];
   state[2] += c;
   state[3] += d;
 
-  /* �f���P�[�g�ȏ��̂Ƃ�����[���ɂ���
+  /* デリケートな情報のところをゼロにする
 
 */
   MD5_memset ((POINTER)x, 0, sizeof (x));
 }
 
-/* ���̓f�[�^(UNIT4)���o�̓f�[�^(unsigned char)�ɃG���R�[�h����
-  ������4�̔{���ł���ƌ��Ȃ�
+/* 入力データ(UNIT4)を出力データ(unsigned char)にエンコードする
+  長さは4の倍数であると見なす
  */
 static void Encode (output, input, len)
 unsigned char *output;
@@ -322,8 +322,8 @@ unsigned int len;
   }
 }
 
-/* ���̓f�[�^(unsigned char)���o�̓f�[�^(UNIT4)�Ƀf�R�[�h����
-  ������4�̔{���ł���ƌ��Ȃ�
+/* 入力データ(unsigned char)を出力データ(UNIT4)にデコードする
+  長さは4の倍数であると見なす
  */
 static void Decode (output, input, len)
 UINT4 *output;
@@ -337,7 +337,7 @@ unsigned int len;
    (((UINT4)input[j+2]) << 16) | (((UINT4)input[j+3]) << 24);
 }
 
-/* ����: �\�Ȃ�΁ufor loop�v��W����memcpy�ƒu�������Ȃ���
+/* メモ: 可能ならば「for loop」を標準のmemcpyと置き換えなさい
  */
 
 static void MD5_memcpy (output, input, len)
@@ -352,7 +352,7 @@ unsigned int len;
  output[i] = input[i];
 }
 
-/* ����: �\�Ȃ�΁ufor loop�v��W����memset�ƒu�������Ȃ���
+/* メモ: 可能ならば「for loop」を標準のmemsetと置き換えなさい
  */
 static void MD5_memset (output, value, len)
 POINTER output;

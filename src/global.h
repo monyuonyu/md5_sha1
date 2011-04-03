@@ -1,4 +1,4 @@
-/*
+﻿/*
  * global.h
  *
  *  Created on: 2011/04/01
@@ -9,30 +9,30 @@
 #define GLOBAL_H_
 
 
-/* GLOBAL.H - RSAREF �^�ƒ萔
+/* GLOBAL.H - RSAREF 型と定数
  */
 
-/* �R���p�C���[���֐��̈����v���g�^�C�v���T�|�[�g���Ă���ꍇ�́A
-   PROTOTYPES��1�ɂ���ׂ��ł���B
-���͂���PROTOTYPES������C�R���p�C���t���O�Œ�`����Ă��Ȃ��ꍇ�ɁA
-  �����l��0�ɂ�����̂ł���B
+/* コンパイラーが関数の引数プロトタイプをサポートしている場合は、
+   PROTOTYPESを1にするべきである。
+次はもしPROTOTYPESが既にCコンパイラフラグで定義されていない場合に、
+  初期値を0にするものである。
  */
 #ifndef PROTOTYPES
 #define PROTOTYPES 1
 #endif
 
-/* POINTER��ėp�|�C���^�^�ƒ�`���� */
+/* POINTERを汎用ポインタ型と定義する */
 typedef unsigned char *POINTER;
 
-/* UINT2��2�o�C�g���[�h�ƒ�`���� */
+/* UINT2を2バイトワードと定義する */
 typedef unsigned short int UINT2;
 
-/* UINT4��4�o�C�g���[�h�ƒ�`���� */
+/* UINT4を4バイトワードと定義する */
 typedef unsigned long int UINT4;
 
-/* PROTO_LIST��PROTOTYPES����łǂ���`���ꂽ���Ɉˑ����Ē�`�����B
-PROTOTYPES���g���ꍇ��PROTO_LIST�̓��X�g��Ԃ��A
-�@�����łȂ��ꍇ�͋�̃��X�g��Ԃ��B
+/* PROTO_LISTはPROTOTYPESが上でどう定義されたかに依存して定義される。
+PROTOTYPESを使う場合はPROTO_LISTはリストを返し、
+　そうでない場合は空のリストを返す。
  */
 #if PROTOTYPES
 #define PROTO_LIST(list) list
