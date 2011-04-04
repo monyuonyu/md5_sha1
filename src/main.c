@@ -20,18 +20,18 @@ int main(int argc, char *argv[])
 		for (cnt = 2; cnt < argc; cnt++)
 		{
 			if (argv[1][0] != '-')
-				return 0;
+				return (0);
 
 			switch (argv[1][1])
 			{
 			case 'm':
-				printf("MD5  (\"%s\") = %s", argv[cnt], tomd5(argv[cnt]));
+				printf("MD5  (\"%s\") = %s\n", argv[cnt], tomd5(argv[cnt]));
 				break;
 			case 's':
-				printf("SHA1 (\"%s\") = %s", argv[cnt], tosha1(argv[cnt]));
+				printf("SHA1 (\"%s\") = %s\n", argv[cnt], tosha1(argv[cnt]));
 				break;
 			default:
-				return 0;
+				return (0);
 			}
 		}
 
