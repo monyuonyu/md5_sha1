@@ -61,64 +61,65 @@ Acknowledgement
 /*
  *  Define patterns for testing
  */
-#define TEST1   "abc"
-#define TEST2a  "abcdbcdecdefdefgefghfghighijhi"
+//#define TEST1   "abc"
+//#define TEST2a  "abcdbcdecdefdefgefghfghighijhi"
 
-#define TEST2b  "jkijkljklmklmnlmnomnopnopq"
-#define TEST2   TEST2a TEST2b
-#define TEST3   "a"
-#define TEST4a  "01234567012345670123456701234567"
-#define TEST4b  "01234567012345670123456701234567"
+//#define TEST2b  "jkijkljklmklmnlmnomnopnopq"
+//#define TEST2   TEST2a TEST2b
+//#define TEST3   "a"
+//#define TEST4a  "01234567012345670123456701234567"
+//#define TEST4b  "01234567012345670123456701234567"
     /* an exact multiple of 512 bits */
-#define TEST4   TEST4a TEST4b
-char *testarray[4] =
-{
-    TEST1,
-    TEST2,
-    TEST3,
-    TEST4
-};
-long int repeatcount[4] = { 1, 1, 1000000, 10 };
-char *resultarray[4] =
-{
-    "A9 99 3E 36 47 06 81 6A BA 3E 25 71 78 50 C2 6C 9C D0 D8 9D",
-    "84 98 3E 44 1C 3B D2 6E BA AE 4A A1 F9 51 29 E5 E5 46 70 F1",
-    "34 AA 97 3C D4 C4 DA A4 F6 1E EB 2B DB AD 27 31 65 34 01 6F",
-    "DE A3 56 A2 CD DD 90 C7 A7 EC ED C5 EB B5 63 93 4F 46 04 52"
-};
+//#define TEST4   TEST4a TEST4b
+//char *testarray[4] =
+//{
+//    TEST1,
+//    TEST2,
+//    TEST3,
+//    TEST4
+//};
+//long int repeatcount[4] = { 1, 1, 1000000, 10 };
+//char *resultarray[4] =
+//{
+//    "A9 99 3E 36 47 06 81 6A BA 3E 25 71 78 50 C2 6C 9C D0 D8 9D",
+//    "84 98 3E 44 1C 3B D2 6E BA AE 4A A1 F9 51 29 E5 E5 46 70 F1",
+//    "34 AA 97 3C D4 C4 DA A4 F6 1E EB 2B DB AD 27 31 65 34 01 6F",
+//    "DE A3 56 A2 CD DD 90 C7 A7 EC ED C5 EB B5 63 93 4F 46 04 52"
+//};
 
-int sha1()
+int sha1(char* str)
 {
     SHA1Context sha;
-    int i, j, err;
+//    int i, j, err;
+    int i, err;
     uint8_t Message_Digest[20];
 
     /*
      *  Perform SHA-1 tests
      */
-    for(j = 0; j < 4; ++j)
-    {
+//    for(j = 0; j < 4; ++j)
+//    {
 //        printf("\nTest %d: %d, '%s'\n", j + 1, repeatcount[j], testarray[j]);
-        printf("SHA1 (\"%s\") = ", testarray[j]);
+        printf("SHA1 (\"%s\") = ", str);
 
         err = SHA1Reset(&sha);
         if (err)
         {
             fprintf(stderr, "SHA1Reset Error %d.\n", err );
-            break;    /* out of for j loop */
+//            break;    /* out of for j loop */
         }
 
-        for(i = 0; i < repeatcount[j]; ++i)
-        {
+//        for(i = 0; i < repeatcount[j]; ++i)
+//        {
 
-            err = SHA1Input(&sha, (const unsigned char *) testarray[j],
-					strlen(testarray[j]));
+            err = SHA1Input(&sha, (const unsigned char *) str,
+					strlen(str));
             if (err)
             {
                 fprintf(stderr, "SHA1Input Error %d.\n", err );
-                break;    /* out of for i loop */
+//                break;    /* out of for i loop */
             }
-        }
+//        }
 
         err = SHA1Result(&sha, Message_Digest);
         if (err)
@@ -139,7 +140,7 @@ int sha1()
 //        printf("Should match:\n");
 //        printf("\t%s\n", resultarray[j]);
         printf("\n");
-    }
+//    }
 
     /* Test some error returns */
 //    err = SHA1Input(&sha,(const unsigned char *) testarray[1], 1);
