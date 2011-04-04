@@ -1,4 +1,4 @@
-﻿/*
+/*
  * mddriver.c
  *
  *  Created on: 2011/04/01
