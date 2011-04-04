@@ -25,10 +25,10 @@ int main(int argc, char *argv[])
 			switch (argv[1][1])
 			{
 			case 'm':
-				MDString(argv[cnt]);
+				printf("MD5  (\"%s\") = %s", argv[cnt], tomd5(argv[cnt]));
 				break;
 			case 's':
-				sha1(argv[cnt]);
+				printf("SHA1 (\"%s\") = %s", argv[cnt], tosha1(argv[cnt]));
 				break;
 			default:
 				return 0;
@@ -37,5 +37,3 @@ int main(int argc, char *argv[])
 
 	return (0);
 }
-
-

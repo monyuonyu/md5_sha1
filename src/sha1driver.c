@@ -41,6 +41,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #include "sha1.h"
 
 /*
@@ -72,12 +73,13 @@
 //    "DE A3 56 A2 CD DD 90 C7 A7 EC ED C5 EB B5 63 93 4F 46 04 52"
 //};
 
-int sha1(char* str)
+char* tosha1(char* str)
 {
     SHA1Context sha;
 //    int i, j, err;
     int i, err;
     uint8_t Message_Digest[20];
+    static char buf[41] = {0,};
 
     /*
      *  Perform SHA-1 tests
@@ -85,7 +87,7 @@ int sha1(char* str)
 //    for(j = 0; j < 4; ++j)
 //    {
 //        printf("\nTest %d: %d, '%s'\n", j + 1, repeatcount[j], testarray[j]);
-        printf("SHA1 (\"%s\") = ", str);
+//        printf("SHA1 (\"%s\") = ", str);
 
         err = SHA1Reset(&sha);
         if (err)
@@ -118,13 +120,18 @@ int sha1(char* str)
 //            printf("\t");
             for(i = 0; i < 20 ; ++i)
             {
-                printf("%X", Message_Digest[i]);
+//                printf("%02X", Message_Digest[i]);
+            	sprintf(&buf[i * 2], "%02X", Message_Digest[i]);
             }
 //            printf("\n");
         }
+
+        for(i = 0; i < 40; i++)
+        	buf[i] = tolower(buf[i]);
+
 //        printf("Should match:\n");
 //        printf("\t%s\n", resultarray[j]);
-        printf("\n");
+//        printf("\n");
 //    }
 
     /* Test some error returns */
@@ -132,5 +139,5 @@ int sha1(char* str)
 //    printf ("\nError %d. Should be %d.\n", err, shaStateError );
 //    err = SHA1Reset(0);
 //    printf ("\nError %d. Should be %d.\n", err, shaNull );
-    return 0;
+    return buf;
 }
