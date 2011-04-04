@@ -6,6 +6,39 @@
  */
 
 /*
+Copyright (C) The Internet Society (2001).  All Rights Reserved.
+
+   This document and translations of it may be copied and furnished to
+   others, and derivative works that comment on or otherwise explain it
+   or assist in its implementation may be prepared, copied, published
+   and distributed, in whole or in part, without restriction of any
+   kind, provided that the above copyright notice and this paragraph are
+   included on all such copies and derivative works.  However, this
+   document itself may not be modified in any way, such as by removing
+   the copyright notice or references to the Internet Society or other
+   Internet organizations, except as needed for the purpose of
+   developing Internet standards in which case the procedures for
+   copyrights defined in the Internet Standards process must be
+   followed, or as required to translate it into languages other than
+   English.
+
+   The limited permissions granted above are perpetual and will not be
+   revoked by the Internet Society or its successors or assigns.
+
+   This document and the information contained herein is provided on an
+   "AS IS" basis and THE INTERNET SOCIETY AND THE INTERNET ENGINEERING
+   TASK FORCE DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING
+   BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+   HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+Acknowledgement
+
+   Funding for the RFC Editor function is currently provided by the
+   Internet Society.
+*/
+
+/*
  *  sha1test.c
  *
  *  Description:
@@ -18,6 +51,7 @@
  *      None.
  *
  */
+
 
 #include <stdint.h>
 #include <stdio.h>
@@ -53,7 +87,7 @@ char *resultarray[4] =
     "DE A3 56 A2 CD DD 90 C7 A7 EC ED C5 EB B5 63 93 4F 46 04 52"
 };
 
-int _main()
+int sha1()
 {
     SHA1Context sha;
     int i, j, err;
@@ -64,7 +98,8 @@ int _main()
      */
     for(j = 0; j < 4; ++j)
     {
-        printf("\nTest %d: %d, '%s'\n", j + 1, repeatcount[j], testarray[j]);
+//        printf("\nTest %d: %d, '%s'\n", j + 1, repeatcount[j], testarray[j]);
+        printf("SHA1 (\"%s\") = ", testarray[j]);
 
         err = SHA1Reset(&sha);
         if (err)
@@ -76,9 +111,8 @@ int _main()
         for(i = 0; i < repeatcount[j]; ++i)
         {
 
-            err = SHA1Input(&sha,
-                  (const unsigned char *) testarray[j],
-                  strlen(testarray[j]));
+            err = SHA1Input(&sha, (const unsigned char *) testarray[j],
+					strlen(testarray[j]));
             if (err)
             {
                 fprintf(stderr, "SHA1Input Error %d.\n", err );
@@ -90,26 +124,27 @@ int _main()
         if (err)
         {
             fprintf(stderr,
-            "SHA1Result Error %d, could not compute message digest.\n",
-            err );
+					"SHA1Result Error %d, could not compute message digest.\n",
+					err);
         }
         else
         {
-            printf("\t");
+//            printf("\t");
             for(i = 0; i < 20 ; ++i)
             {
-                printf("%02X ", Message_Digest[i]);
+                printf("%X", Message_Digest[i]);
             }
-            printf("\n");
+//            printf("\n");
         }
-        printf("Should match:\n");
-        printf("\t%s\n", resultarray[j]);
+//        printf("Should match:\n");
+//        printf("\t%s\n", resultarray[j]);
+        printf("\n");
     }
 
     /* Test some error returns */
-    err = SHA1Input(&sha,(const unsigned char *) testarray[1], 1);
-    printf ("\nError %d. Should be %d.\n", err, shaStateError );
-    err = SHA1Reset(0);
-    printf ("\nError %d. Should be %d.\n", err, shaNull );
+//    err = SHA1Input(&sha,(const unsigned char *) testarray[1], 1);
+//    printf ("\nError %d. Should be %d.\n", err, shaStateError );
+//    err = SHA1Reset(0);
+//    printf ("\nError %d. Should be %d.\n", err, shaNull );
     return 0;
 }
