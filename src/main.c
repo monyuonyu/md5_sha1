@@ -19,16 +19,20 @@ int main(int argc, char *argv[])
 	if (argc > 2)
 		for (cnt = 2; cnt < argc; cnt++)
 		{
-			if (argv[1][0] == '-')
-				switch (argv[1][1])
-				{
-				case 'm':
-					MDString(argv[cnt]);
-					break;
-				case 's':
-					sha1(argv[cnt]);
-					break;
-				}
+			if (argv[1][0] != '-')
+				return 0;
+
+			switch (argv[1][1])
+			{
+			case 'm':
+				MDString(argv[cnt]);
+				break;
+			case 's':
+				sha1(argv[cnt]);
+				break;
+			default:
+				return 0;
+			}
 		}
 
 	return (0);

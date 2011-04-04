@@ -96,12 +96,12 @@ int sha1(char* str)
         }
         else
         {
-            printf("\t");
+//            printf("\t");
             for(i = 0; i < 20 ; ++i)
             {
-                printf("%02X ", Message_Digest[i]);
+                printf("%X", Message_Digest[i]);
             }
-            printf("\n");
+//            printf("\n");
         }
 //        printf("Should match:\n");
 //        printf("\t%s\n", resultarray[j]);
