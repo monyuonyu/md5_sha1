@@ -57,8 +57,8 @@ RSAデータセキュリティ社はこのソフトの商品性もしくはこ�
 #define TEST_BLOCK_LEN 1000
 #define TEST_BLOCK_COUNT 1000
 
-//static void MDString PROTO_LIST ((char *));
-//static void MDPrint PROTO_LIST ((unsigned char [16]));
+void MDString PROTO_LIST ((char *));
+static void MDPrint PROTO_LIST ((unsigned char [16]));
 
 #if MD == 2
 #define MD_CTX MD2_CTX
@@ -103,30 +103,30 @@ Arguments (may be any combination):
 
 /* 文字列を要約し結果を出力する
  */
-//static void MDString(char *string)
-//{
-//	MD_CTX context;
-//	unsigned char digest[16];
-//	unsigned int len = strlen(string);
-//
-//	MDInit(&context);
-//	MDUpdate(&context, string, len);
-//	MDFinal(digest, &context);
-//
-//	printf("MD%d (\"%s\") = ", MD, string);
-//	MDPrint(digest);
-//	printf("\n");
-//}
+void MDString(char *string)
+{
+	MD_CTX context;
+	unsigned char digest[16];
+	unsigned int len = strlen(string);
+
+	MDInit(&context);
+	MDUpdate(&context, string, len);
+	MDFinal(digest, &context);
+
+	printf("MD%d (\"%s\") = ", MD, string);
+	MDPrint(digest);
+	printf("\n");
+}
 
 
 /* 16進法でメッセージ要約を出力する
  Prints a message digest in hexadecimal.
  */
-//static void MDPrint(unsigned char digest[16])
-//{
-//
-//	unsigned int cnt;
-//
-//	for (cnt = 0; cnt < 16; cnt++)
-//		printf("%02x", digest[cnt]);
-//}
+static void MDPrint(unsigned char digest[16])
+{
+
+	unsigned int cnt;
+
+	for (cnt = 0; cnt < 16; cnt++)
+		printf("%02x", digest[cnt]);
+}
