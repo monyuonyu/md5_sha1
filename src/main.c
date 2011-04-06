@@ -79,17 +79,6 @@ char* getpass_2()
 int main(int argc, char *argv[])
 {
 
-//	int i = 2;
-//
-//	char* aaa;
-//	char str[] = "aaa";
-//
-//
-//	aaa = getpass_1();
-//
-//	printf("%s\n", tomd5("aaa"));
-//	printf("%s\n", tomd5(aaa));
-//	printf("%s\n", tomd5(str));
 
 	if(!(argc > 1))
 		return 0;
@@ -123,40 +112,6 @@ int main(int argc, char *argv[])
 			}
 		break;
 	}
-
-
-//	if (argc > 2)
-//		for (i = 2; i < argc; i++)
-//		{
-//			if (argv[1][0] != '-')
-//				return (0);
-//
-//			switch (argv[1][1])
-//			{
-//			case 'm':
-//				printf("MD5  (\"%s\") = %s\n", argv[i], tomd5(argv[i]));
-//				break;
-//			case 's':
-//				printf("SHA1 (\"%s\") = %s\n", argv[i], tosha1(argv[i]));
-//				break;
-//			case 'c':
-//
-//				switch (argv[1][2])
-//				{
-//				case 'm':
-//					printf("\ngenerated MD5pass -> %s", tomd5(getpass()));
-//					break;
-//
-//				default:
-//				case 's':
-//					printf("\ngenerated SHA1pass -> %s", tosha1(getpass()));
-//					break;
-//
-//				}
-//			default:
-//				return (0);
-//			}
-//		}
 
 	return (0);
 }

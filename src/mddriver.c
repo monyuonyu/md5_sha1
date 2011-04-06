@@ -19,15 +19,6 @@ without express or implied warranty of any kind.
 These notices must be retained in any copies of any part of this
 documentation and/or software.
 
-[訳者注:以下は上の文章を仮に訳したものであり正式な効力を持つのは上の英語
-の文章です。]
-
-RSAデータセキュリティ社はこのソフトの商品性もしくはこのソフトの特定目
-的への適合性に関するいかなる表明も行わない。これは明示・暗黙を問わずい
-かなる保証もない「そのまま」の状態で配布される。
-
-この文書および(もしくは)ソフトのいかなる部分の複製物にもこれらの注意書
-きが書かれていなければならない。
  */
 
 /* Cコンパイラフラグによって定義されていない場合は下記によりMDの初期値
