@@ -91,6 +91,8 @@ int main(int argc, char *argv[])
 //	printf("%s\n", tomd5(aaa));
 //	printf("%s\n", tomd5(str));
 
+	if(!(argc > 1))
+		return 0;
 
 	switch (strlen(argv[1]))
 	{
