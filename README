@@ -1,1 +1,29 @@
-コマンドラインから入力された 文字列を MD5かSHA1に変換して出力します。
+いろいろ試すためのリポジトリです
+
+メモ
+
+全体設定
+ ダウンロードおよびインストール Git
+  git config --global user.name ""
+  git config --global user.email pino@helloidea.org
+        
+次の手順:
+  mkdir aaa
+  cd aaa
+  git init
+  touch README
+  git add README
+  git commit -m 'first commit'
+  git remote add origin git@github.com:monyuonyu/aaa.git
+  git push -u origin master
+      
+すでにGitリポジトリがありますか?
+  cd existing_git_repo
+  git remote add origin git@github.com:monyuonyu/aaa.git
+  git push -u origin master
+      
+Subversionのリポジトリを取り込みたい?
+  ここをクリック
+      
+終わったら
+  続ける
